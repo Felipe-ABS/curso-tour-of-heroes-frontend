@@ -5,6 +5,14 @@
 
   <button
     mat-icon-button
+    aria-label="Dashboard"
+    matTooltip="Dashboard"
+    routerLink="/dashboard">
+    <mat-icon>dashboard</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
     aria-label="Heroes List"
     matTooltip="Heroes List"
     routerLink="/heroes">
@@ -12,7 +20,7 @@
   </button>
 </mat-toolbar>
 
-<div class="content">
+<div class="content" fxLayoutGap="12px">
   <router-outlet></router-outlet>
   <app-messages></app-messages>
 </div>
