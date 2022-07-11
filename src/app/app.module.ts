@@ -10,8 +10,6 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { HeroesModule } from './heroes/heroes.module';
 
 @NgModule({
   declarations: [
@@ -23,14 +21,9 @@ import { HeroesModule } from './heroes/heroes.module';
     BrowserModule,
     BrowserAnimationsModule,
 
-    // Feature
-    DashboardModule,
-    HeroesModule,
-
     // App
     FormsModule,
     CoreModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

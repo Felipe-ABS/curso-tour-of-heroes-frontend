@@ -4,8 +4,10 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { HeroesComponent } from './components/heroes/heroes.component';
 
 const routes: Routes = [
-  { path: 'heroes/:id', component: HeroDetailComponent },
-  { path: 'heroes', component: HeroesComponent }
+  // O vazio é "substituido" pelo nome do path que está no app-routing, pois o nome das suas rotas ja estão no app-routing
+  // O path no caso ja está sendo setado no app-routing, então ele ja está com o contexto de Heroes
+  { path: ':id', component: HeroDetailComponent },
+  { path: '', component: HeroesComponent }
 ];
 
 @NgModule({

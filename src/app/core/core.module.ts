@@ -5,11 +5,13 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found.component';
 
  // Os componentes importados aqui devem ser exportados para que eles possam ser reconhecidos pelo app module, que é o module da aplicação inteira
 const COMPONENTS = [
   ToolbarComponent,
-  MessagesComponent
+  MessagesComponent,
+  PageNotFoundComponent
 ]
 
 const MODULES = [
@@ -21,7 +23,7 @@ const MODULES = [
 
 @NgModule({
   declarations: [
-    COMPONENTS
+    COMPONENTS,
   ],
   imports: [
     CommonModule,
