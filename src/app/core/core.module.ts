@@ -6,12 +6,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
  // Os componentes importados aqui devem ser exportados para que eles possam ser reconhecidos pelo app module, que é o module da aplicação inteira
 const COMPONENTS = [
   ToolbarComponent,
   MessagesComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  LoadingComponent
 ]
 
 const MODULES = [
@@ -32,6 +36,13 @@ const MODULES = [
   exports: [
     COMPONENTS,
     MODULES,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, // Qual o tipo que esse provider é, nesse caso um HTTP_INTERCEPTORS
+      useClass: LoadingInterceptor, // Qual a classe que eu to usando o interceptor
+      multi: true // O multi diz que vai poder ter mais de um interceptor
+    }
   ]
 })
 export class CoreModule {

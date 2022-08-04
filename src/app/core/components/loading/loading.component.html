@@ -1,0 +1,3 @@
+<div class="spinner-container" *ngIf="this.loadingService.loading$ | async"> <!-- Com isso o angular vai conseguir puxar o valor do service direto pro template, e o pipe nativo do angular pra identificar que é assíncrono -->
+  <mat-spinner></mat-spinner>
+</div>
