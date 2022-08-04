@@ -40,15 +40,26 @@ export class HeroService {
     // return of(hero);
 
     return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
-      tap((hero) => this.log(`fetched hero id=${id} and name=${hero.name}`))
+      tap((hero) => this.log(`fetched ${this.descAttributes(hero)}`))
+    );
+  }
+
+  // POST /heroes
+  create(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
+      tap((hero) => this.log(`Created ${this.descAttributes(hero)}`))
     );
   }
 
   // PUT /heroes/id
   update(hero: Hero): Observable<Hero> {
     return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
-      tap((hero) => this.log(`Updated hero id=${hero.id} and name=${hero.name}`))
+      tap((hero) => this.log(`Updated ${this.descAttributes(hero)}`))
     ); // No put tem que colocar o objeto que vamos alterar, no caso o hero que está vindo como parâmetro
+  }
+
+  private descAttributes(hero: Hero): string {
+    return `Hero Id=${hero.id} and Name=${hero.name}`
   }
 
   private log(message: string): void {
