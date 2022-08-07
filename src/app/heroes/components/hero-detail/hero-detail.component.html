@@ -1,29 +1,43 @@
   <h1>{{ isEditing ? "Update" : "Create" }} Hero</h1>
 
-  <mat-card>
-    <mat-card-content fxLayout="column">
-      <mat-form-field *ngIf="isEditing">
-        <mat-label>ID</mat-label>
-        <!-- O value com os colchetes ao redor, estamos informando que esse atributo value esta recebendo o valor de uma propriedade ou de um método -->
-        <input matInput disabled [value]="hero.id"> <!-- Colocando so colchetes [] em value, não é mais necessário usar as duas chaves {{}} -->
-      </mat-form-field>
+  <form [formGroup]="form" novalidate> <!-- É o form que foi criado no component do hero detail / Com o "novalidate" as validações do HTML não vão ocorrer, isso serve para que quando usamos o formControl, nós tenhamos o controle do formulário -->
+    <mat-card>
+      <mat-card-content fxLayout="column">
+        <!-- ID -->
+        <mat-form-field *ngIf="isEditing">
+          <mat-label>ID</mat-label>
+          <!-- O value com os colchetes ao redor, estamos informando que esse atributo value esta recebendo o valor de uma propriedade ou de um método -->
+          <!-- O disable que estava na tag de input, quando é utilizado um form control, não pode mais ser desabilitado pelo template, e sim pelo component.ts -->
+          <input matInput formControlName="id"> <!-- Colocando so colchetes [] em value, não é mais necessário usar as duas chaves {{}} -->
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Hero Name</mat-label>
-        <input id="name"
+        <!-- Name -->
+        <mat-form-field appearance="fill">
+          <mat-label>Hero Name</mat-label>
+          <input id="name"
+          formControlName="name"
           matInput
-          [(ngModel)]="hero.name"
           placeholder="Name"
           type="text">
-      </mat-form-field>
-    </mat-card-content>
+          <mat-error *ngIf="form.controls['name'].hasError('required')"> <!-- Essa forma do ngIf, é como é representado no "this.form" quando é imprimido no console, em controls, no nome do controle e em errors vai está la um dos validadores -->
+            Nome é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.controls['name'].hasError('minlength')">
+            Nome deve conter pelo menos 3 caracteres
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
 
-    <mat-card-actions>
-      <!-- o trim() retira os espaços antes e depois da string, e assim não permitindo que alguém coloque algo vazio -->
-      <button color="primary" [disabled]="!isFormValid()" mat-raised-button *ngIf="!isEditing" (click)="create()">Create</button>
+      <mat-card-actions>
+        <!-- o trim() retira os espaços antes e depois da string, e assim não permitindo que alguém coloque algo vazio -->
+        <!-- Create -->
+        <button color="primary" mat-raised-button *ngIf="!isEditing" (click)="create()">Create</button>
 
-      <button color="primary" [disabled]="!isFormValid()" mat-raised-button *ngIf="isEditing" (click)="update()">Update</button>
+        <!-- Update -->
+        <button color="primary" mat-raised-button *ngIf="isEditing" (click)="update()">Update</button>
 
-      <button mat-raised-button (click)="goBack()">Back</button>
-    </mat-card-actions>
-  </mat-card>
+        <!-- Go Back -->
+        <button mat-raised-button (click)="goBack()">Back</button>
+      </mat-card-actions>
+    </mat-card>
+</form>
