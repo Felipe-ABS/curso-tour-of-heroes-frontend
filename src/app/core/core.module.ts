@@ -9,8 +9,11 @@ import { PageNotFoundComponent } from './components/page-not-found.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
- // Os componentes importados aqui devem ser exportados para que eles possam ser reconhecidos pelo app module, que é o module da aplicação inteira
+// O Core é onde terá TUDO que está sendo utilizado pela aplicação, seja os componentes criados para usar dentro das páginas ou as importações que serão necessárias
+
+// Os componentes importados aqui devem ser exportados para que eles possam ser reconhecidos pelo app module, que é o module da aplicação inteira
 const COMPONENTS = [
   ToolbarComponent,
   MessagesComponent,
@@ -42,7 +45,12 @@ const MODULES = [
       provide: HTTP_INTERCEPTORS, // Qual o tipo que esse provider é, nesse caso um HTTP_INTERCEPTORS
       useClass: LoadingInterceptor, // Qual a classe que eu to usando o interceptor
       multi: true // O multi diz que vai poder ter mais de um interceptor
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
   ]
 })
 export class CoreModule {
