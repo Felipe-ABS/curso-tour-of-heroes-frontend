@@ -1,0 +1,20 @@
+<!-- o appearance fill é para que o input não fique aparecendo apenas como uma linha, mas sim com um fundo mais acinzentado para melhor visualização -->
+<mat-form-field appearance="fill" class="input-width"> <!-- por conta do modulo de shared, o modulo ele é como uma gaveta, então ele só vai reconhecer o que estiver no modulo, nesse caso do shared OBS: antes estava dando problema que não reconhecia -->
+  <mat-label>{{ label }}</mat-label>
+  <input
+    [matAutocomplete]="auto"
+    matInput placeholder="Hero Name"
+    #searchBox
+    type="text"
+    (input)="search(searchBox.value)"> <!-- quando usamos o simbolo de "#" e depois um nome, estamos declarando uma "variável de template" onde vai referenciar todos os atributos do input, já que a variável de atributo está inserida dentro dele -->
+  <button mat-icon-button matSuffix *ngIf="searchBox.value"
+    (click)="searchBox.value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete"
+    (optionSelected)="onSelected($event); searchBox.value=''"> <!-- no $event, significa que o valor que eu selecionar vai cair no parâmetro onde está escrito $event -->
+    <mat-option *ngFor="let hero of heroes$ | async" [value]="hero"> <!-- O valor de [value]="hero" irá para o $event que está no optionSelected -->
+      {{ hero.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

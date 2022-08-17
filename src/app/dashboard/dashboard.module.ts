@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -17,7 +18,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     // e importando esse [Nome]RoutingModule, como ele ja usa o RouterModule, importando ele o RouterModule também vai funcionar sem problemas nesse modulo
     // assim podendo usar o routerlink e outras funcionalidades de rotas tranquilamente
     DashboardRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

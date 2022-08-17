@@ -1,13 +1,20 @@
 <h1>Dashboard</h1>
 
-<div
-  fxLayout
-  fxLayout.xs="column"
-  fxLayoutGap="12px"
-  fxLayoutAlign="space-between">
-  <mat-card *ngFor="let hero of heroes"
-    [routerLink]="['/heroes/', hero.id]"
-    class="pointer">
-    <mat-card-title>{{hero.name}}</mat-card-title>
-  </mat-card>
+<div fxLayout="column" fxLayoutGap="24px">
+  <div
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutGap="12px"
+    fxLayoutAlign="space-between">
+    <mat-card *ngFor="let hero of heroes"
+      [routerLink]="['/heroes/', hero.id]"
+      class="pointer">
+      <mat-card-title>{{hero.name}}</mat-card-title>
+    </mat-card>
+  </div>
+
+  <!-- O dashboard é PAI do app-hero-search -->
+  <!-- Para o filho mandar algo devolta para o Pai -->
+  <app-hero-search [label]="'Hero Search'" (selected)="onSelected($event)"></app-hero-search> <!-- Este [label] é um "Input()" que foi criado no component do hero-search, onde por aqui ele pode receber um valor de outro componente como componente filho -->
+  <!-- [] para enviar algum valor e () para receber algum valor -->
 </div>

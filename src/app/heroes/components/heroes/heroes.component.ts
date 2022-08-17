@@ -41,7 +41,6 @@ export class HeroesComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if(result) {
         this.heroService.delete(hero).subscribe(() => {
           this.heroes = this.heroes.filter(h => h !== hero) // No filter, se der verdadeiro ele entra na lista de heroes, se não ele não entra
@@ -51,7 +50,10 @@ export class HeroesComponent implements OnInit {
           //this.getHeroes();
         });
       }
-    }) // Vai retornar um Observable, então deve-se usar o subscribe para poder mexer com um observable
+    }); // Vai retornar um Observable, então deve-se usar o subscribe para poder mexer com um observable
+  }
 
+  onSelected(hero: Hero): void {
+    this.delete(hero);
   }
 }

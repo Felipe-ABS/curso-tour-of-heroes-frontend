@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hero } from '../core/models/hero.model';
 import { HeroService } from '../core/services/hero.service';
 
@@ -10,7 +11,7 @@ import { HeroService } from '../core/services/hero.service';
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private router: Router) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -22,4 +23,7 @@ export class DashboardComponent implements OnInit {
       // linha que eu pedi, ou seja, o item que está na posição 5 não será pego pelo slice, apenas do 1 até o 4 (lembrando que array começa em 0 então o 1 seria a segunda posição)
   }
 
+  onSelected(hero: Hero): void { // Esse hero é o hero que está vindo la do hero-search, e quando selecionado ele muda a rota de navegação
+    this.router.navigate(['/heroes', hero.id]);
+  }
 }

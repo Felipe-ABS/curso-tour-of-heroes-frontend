@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { ignoreElements, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
@@ -42,6 +42,24 @@ export class HeroService {
     return this.http.get<Hero>(this.getUrl(id)).pipe(
       tap((hero) => this.log(`fetched ${this.descAttributes(hero)}`))
     );
+  }
+
+  // GET /heroes?name=term&age=22 se colocar o ponto de interrogação "?" significa que podemos passar alguns parâmetros pela URL, nesse caso se chama queryString
+  // E quando colocado um parâmetro, se precisar colocar mais de um parâmetro na mesma url, basta usar o "&"
+  search(term: string): Observable<Hero[]> {
+    if(!term.trim()) { // Se não tiver no termo vai retornar um array vazio
+      return of([]);
+    }
+
+    return this.http.get<Hero[]>(`${this.heroesUrl}?name=${term}`)
+      .pipe(
+        tap((heroes) =>
+          heroes.length
+            ? this.log(`Found ${heroes.length} hero(es) matching "${term}"`)
+            : this.log(`No hero(es) matching "${term}"`)
+        )
+
+      );
   }
 
   // POST /heroes
