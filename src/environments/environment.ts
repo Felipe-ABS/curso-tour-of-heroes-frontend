@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  baseURL: '/api'
+  baseURL: 'https://curso-tour-of-heroes-api.herokuapp.com/api',
+  // baseURL: '/api'
 };

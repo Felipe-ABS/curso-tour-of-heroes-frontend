@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'https://toh-json-server-api.herokuapp.com/api'
+  baseURL: 'https://curso-tour-of-heroes-api.herokuapp.com/api'
 };

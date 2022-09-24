@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 // O Core é onde terá TUDO que está sendo utilizado pela aplicação, seja os componentes criados para usar dentro das páginas ou as importações que serão necessárias
 
@@ -53,6 +54,11 @@ const MODULES = [
       useClass: HttpErrorInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule {
