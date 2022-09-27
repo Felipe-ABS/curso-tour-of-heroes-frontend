@@ -9,8 +9,11 @@
       mat-icon-button
       [matTooltip]="menuItem.toolTipText"
       *ngFor="let menuItem of menuItems"
-      [routerLink]="[menuItem.routerLink]">
-      <mat-icon>{{menuItem.icon}}</mat-icon>
+      [routerLink]="[menuItem.routerLink]"> <!-- Uma das soluções para não ter erro do menuItems aqui é desativando o "strictTemplate" no tsConfig.json -->
+      <!-- nesse caso, a outra forma de não dar erro, é no menuItem, o fasIcon ser do tipo "any", sendo mais uma das formas de contornar o erro -->
+      <fa-icon [icon]="['fas', menuItem.fasIcon]"
+        *ngIf="!!menuItem.fasIcon"></fa-icon> <!-- O font awesome tem atributos para que você possa fazer animações simples com os icones, como girar o icone por exemplo -->
+      <mat-icon *ngIf="!!menuItem.matIcon">{{menuItem.matIcon}}</mat-icon>
     </button>
   </ng-container>
 

@@ -12,6 +12,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { IconsModule } from '../icons/icons.module';
 
 // O Core é onde terá TUDO que está sendo utilizado pela aplicação, seja os componentes criados para usar dentro das páginas ou as importações que serão necessárias
 
@@ -26,6 +27,7 @@ const CORE_COMPONENTS = [
 
 const MODULES = [
   MaterialModule,
+  IconsModule,
   // O FlexLayout só funciona se ele tiver sido declarado no modulo em que existe os componentes que utilizam ele
   FlexLayoutModule,
   RouterModule

@@ -33,7 +33,7 @@ const MODULES = [
 ]
 
 @NgModule({
-  imports: [MODULES],
+  // imports: [MODULES], imports apenas se for usar no mesmo componente do módulo
   exports: [MODULES]
 })
 export class MaterialModule { }
