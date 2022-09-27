@@ -1,9 +1,15 @@
+<!-- usar o pipe "async" é igual usar o .subscribe -->
 <app-toolbar
+  [isLoggedIn]="isLoggedIn$ | async"
   [title]="title"
-  [menuItems]="menuItems"></app-toolbar>
+  [menuItems]="menuItems"
+  (logout)="onLogout()">
+</app-toolbar>
 
 <div class="content" fxLayoutGap="12px">
   <app-loading></app-loading>
+
   <router-outlet></router-outlet>
-  <app-messages></app-messages>
+
+  <app-messages *ngIf="isLoggedIn$ | async"></app-messages>
 </div>
