@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+    // Third-party
+    FlexLayoutModule,
 
     // App
     AuthModule,

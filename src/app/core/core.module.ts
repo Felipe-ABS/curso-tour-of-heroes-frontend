@@ -16,7 +16,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 // O Core é onde terá TUDO que está sendo utilizado pela aplicação, seja os componentes criados para usar dentro das páginas ou as importações que serão necessárias
 
 // Os componentes importados aqui devem ser exportados para que eles possam ser reconhecidos pelo app module, que é o module da aplicação inteira
-const COMPONENTS = [
+const CORE_COMPONENTS = [
   ConfirmationDialogComponent,
   ToolbarComponent,
   MessagesComponent,
@@ -33,14 +33,14 @@ const MODULES = [
 
 @NgModule({
   declarations: [
-    COMPONENTS,
+    CORE_COMPONENTS,
   ],
   imports: [
     CommonModule,
     MODULES
   ],
   exports: [
-    COMPONENTS,
+    CORE_COMPONENTS,
     MODULES,
   ],
   providers: [
